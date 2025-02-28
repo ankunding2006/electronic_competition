@@ -42,7 +42,19 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			Encoder_Right=-Read_Encoder(4);           					//读取右轮编码器的值，前进为正，后退为负
 																													//左轮A相接TIM2_CH1,右轮A相接TIM4_CH2,故这里两个编码器的极性相同
 			Get_Velocity_Form_Encoder(Encoder_Left,Encoder_Right);//编码器读数转速度（mm/s）
-
+            // //串口打印速度(50ms打印一次)
+			// static int print_count = 0;
+			// print_count++;
+			// if(print_count >= 10) // 5ms执行一次中断，10次就是50ms
+			// {
+			// 	print_count = 0;
+			// 	// 打印左右轮的速度信息
+			// 	// printf("Speed_L:%.2f cm/s, Speed_R:%.2f cm/s\r\n", 
+			// 	// 	(float)Encoder_Left, (float)Encoder_Right);
+			// 	// 也可以选择打印平均速度
+			// 	// printf("Average Speed:%.2f cm/s\r\n", 
+			// 	//       ((float)Encoder_Left+(float)Encoder_Right)*0.02724);
+			// }
 			// if(Flag_Target==1)                        					//10ms控制一次
 			// {
 				

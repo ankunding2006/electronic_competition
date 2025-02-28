@@ -21,7 +21,7 @@ All rights reserved
 #include "sys.h"
 extern int Sensor_Left,Sensor_Middle,Sensor_Right,Sensor;
 
-//#define __PWM_0__								//调试模式，不输出PWM
+#define __PWM_0__								//调试模式，不输出PWM
 
 #define PI 3.14159265							//PI圆周率
 #define Control_Frequency  200.0	//编码器读取频率
