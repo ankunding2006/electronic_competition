@@ -43,14 +43,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 																													//左轮A相接TIM2_CH1,右轮A相接TIM4_CH2,故这里两个编码器的极性相同
 			Get_Velocity_Form_Encoder(Encoder_Left,Encoder_Right);//编码器读数转速度（mm/s）
 
-			if(Flag_Target==1)                        					//10ms控制一次
-			{
+			// if(Flag_Target==1)                        					//10ms控制一次
+			// {
 				
-				Voltage_Temp=Get_battery_volt();		    					//读取电池电压		
-				Voltage_Count++;                       						//平均值计数器
-				Voltage_All+=Voltage_Temp;              					//多次采样累积
-				if(Voltage_Count==100) Voltage=Voltage_All/100,Voltage_All=0,Voltage_Count=0;//求平均值						                                               
-			}                                         					//10ms控制一次
+			// 	Voltage_Temp=Get_battery_volt();		    					//读取电池电压		
+			// 	Voltage_Count++;                       						//平均值计数器
+			// 	Voltage_All+=Voltage_Temp;              					//多次采样累积
+			// 	if(Voltage_Count==100) Voltage=Voltage_All/100,Voltage_All=0,Voltage_Count=0;//求平均值						                                               
+			// }                                         					//10ms控制一次
 			if(delay_flag==1)
 			{
 				delay_50++;
@@ -61,12 +61,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 //			if(Flag_follow==0&&Flag_avoid==0)	Led_Flash(100);   //LED闪烁;常规模式 1s改变一次指示灯的状态	
 //			if(Flag_follow==1||Flag_avoid==1)	Led_Flash(0);     //LED常亮;超声波跟随/避障模式	
 			Key();                                    		    //扫描按键状态 单击双击可以改变小车运行状态
-			Select_Zhongzhi();
-			Lidar_Avoid();                                      //雷达避障模式
-		    Lidar_Follow();                                         //雷达跟随模式
-		    Lidar_Straight();                                       //雷达走直线模式
-			CCD_Mode();                                          //CCD巡线
-		    ELE_Mode();                                          //电磁巡线
+			// Select_Zhongzhi();
+			// Lidar_Avoid();                                      //雷达避障模式
+		    // Lidar_Follow();                                         //雷达跟随模式
+		    // Lidar_Straight();                                       //雷达走直线模式
+			// CCD_Mode();                                          //CCD巡线
+		    // ELE_Mode();                                          //电磁巡线
 			Balance_Pwm=Balance(Angle_Balance,Gyro_Balance);    //平衡PID控制 Gyro_Balance平衡角速度极性：前倾为正，后倾为负
 			Velocity_Pwm=Velocity(Encoder_Left,Encoder_Right);  //速度环PID控制	记住，速度反馈是正反馈，就是小车快的时候要慢下来就需要再跑快一点
 			// if(Mode ==CCD_Line_Patrol_Mode)                     //CCD循迹下的转向环控制 

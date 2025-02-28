@@ -39,7 +39,7 @@ int Temperature;                            //温度变量
 int Voltage,Middle_angle;                   //电池电压采样相关的变量
 float Angle_Balance,Gyro_Balance,Gyro_Turn; //平衡倾角 平衡陀螺仪 转向陀螺仪
 u8 LD_Successful_Receive_flag;              //雷达成功接收数据标志位
-u8 Mode = 0;								//模式选择，默认是普通的控制模式
+u8 Mode =Ultrasonic_Follow_Mode;								//模式选择，默认是普通的控制模式
 u8 CCD_Zhongzhi,CCD_Yuzhi;                  //CCD中值和阈值
 u16 ADV[128]={0};                           //存放CCD的数据的数组
 u16 determine;                              //雷达跟随模式的一个标志位
@@ -123,12 +123,12 @@ int main(void)
   //  while(Choose()) { }
 	if(Mode==Ultrasonic_Avoid_Mode||Mode==Ultrasonic_Follow_Mode)
 		  MX_TIM2_Init(); //超声波和雷达、CCD、ELE巡线不能同时使用，使用CCD、ELE功能时，需要拆下超声波模块
-	if(Mode==Lidar_Avoid_Mode||Mode==Lidar_Follow_Mode||Mode==Lidar_Straight_Mode)
-		MX_USART2_UART_Init();
-	if(Mode==CCD_Line_Patrol_Mode)
-		CCD_Init();
-	if(Mode==ELE_Line_Patrol_Mode)
-		ELE_Init();	
+	// if(Mode==Lidar_Avoid_Mode||Mode==Lidar_Follow_Mode||Mode==Lidar_Straight_Mode)
+	// 	MX_USART2_UART_Init();
+	// if(Mode==CCD_Line_Patrol_Mode)
+	// 	CCD_Init();
+	// if(Mode==ELE_Line_Patrol_Mode)
+	// 	ELE_Init();	
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn); //开启引脚外部中断
   /* USER CODE END 2 */
 
