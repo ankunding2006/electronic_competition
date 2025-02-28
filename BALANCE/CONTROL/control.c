@@ -68,6 +68,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			// CCD_Mode();                                          //CCD巡线
 		    // ELE_Mode();                                          //电磁巡线
 			Balance_Pwm=Balance(Angle_Balance,Gyro_Balance);    //平衡PID控制 Gyro_Balance平衡角速度极性：前倾为正，后倾为负
+			//Balance_Pwm=0;
 			Velocity_Pwm=Velocity(Encoder_Left,Encoder_Right);  //速度环PID控制	记住，速度反馈是正反馈，就是小车快的时候要慢下来就需要再跑快一点
 			// if(Mode ==CCD_Line_Patrol_Mode)                     //CCD循迹下的转向环控制 
 			//    Turn_Pwm=CCD_turn(CCD_Zhongzhi,Gyro_Turn);
@@ -81,7 +82,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 																													//PWM值正数使小车前进，负数使小车后退
 			Motor_Left=PWM_Limit(Motor_Left,6900,-6900);
 			Motor_Right=PWM_Limit(Motor_Right,6900,-6900);			//PWM限幅
+		    #ifdef __PWM_0__												//如果是调试模式，不输出PWM
+			Set_Pwm(0,0);                            					//如果是调试模式，不输出PWM
+			#else
 			Set_Pwm(Motor_Left,Motor_Right);         					//赋值给PWM寄存器 
+			#endif
 			// if(Pick_Up(Acceleration_Z,Angle_Balance,Encoder_Left,Encoder_Right))//检查是否小车被拿起
 			// 	Flag_Stop=1;	                           					//如果被拿起就关闭电机
 			// if(Put_Down(Angle_Balance,Encoder_Left,Encoder_Right))//检查是否小车被放下

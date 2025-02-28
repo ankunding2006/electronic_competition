@@ -2,6 +2,8 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "usart.h": "c",
-        "mpu6050.h": "c"
+        "mpu6050.h": "c",
+        "control.h": "c",
+        "tim.h": "c"
     }
 }

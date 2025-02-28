@@ -136,7 +136,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		
+    printf("distance:%d\r\n",Distance);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
