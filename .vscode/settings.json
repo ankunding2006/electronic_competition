@@ -4,6 +4,10 @@
         "usart.h": "c",
         "mpu6050.h": "c",
         "control.h": "c",
-        "tim.h": "c"
+        "tim.h": "c",
+        "sys.h": "c",
+        "show.h": "c",
+        "oled.h": "c",
+        "main.h": "c"
     }
 }

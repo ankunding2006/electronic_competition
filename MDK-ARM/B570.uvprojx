@@ -624,6 +624,11 @@
               <FileType>1</FileType>
               <FilePath>..\BALANCE\SHOW\show.c</FilePath>
             </File>
+            <File>
+              <FileName>LineFinder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\LineFinder.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

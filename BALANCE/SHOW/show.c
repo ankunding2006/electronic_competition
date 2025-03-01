@@ -50,13 +50,13 @@ void oled_show(void)
 	       else if(Mode==4)            OLED_ShowString(60,0,"LD_Follow");
 	       else  if(Mode==5)           OLED_ShowString(60,0,"LD_Straight");
 	       else if(Mode==6)            OLED_Show_CCD();
-	       else if(Mode==7)
-			   {
-					  OLED_ShowNumber(0,0,Sensor_Left,5,12);	
-						OLED_ShowNumber(30,0,Sensor_Middle,4,12);
-						OLED_ShowNumber(60,0,Sensor_Right,4,12);
-						OLED_ShowNumber(90,0,Sensor,4,12);		
-				 }
+	    //    else if(Mode==7)
+		// 	   {
+		// 			  OLED_ShowNumber(0,0,Sensor_Left,5,12);	
+		// 				OLED_ShowNumber(30,0,Sensor_Middle,4,12);
+		// 				OLED_ShowNumber(60,0,Sensor_Right,4,12);
+		// 				OLED_ShowNumber(90,0,Sensor,4,12);		
+		// 		 }
 		//=============第二行显示角度=======================//	
 		                      OLED_ShowString(00,10,"Angle");
 		if( Angle_Balance<0)	OLED_ShowString(48,10,"-");

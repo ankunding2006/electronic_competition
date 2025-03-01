@@ -17,7 +17,6 @@ Update：2021-04-29
 All rights reserved
 ***********************************************/
 #include "control.h"	
-int Sensor_Left,Sensor_Middle,Sensor_Right,Sensor;
 /**************************************************************************
 Function: Control function
 Input   : none
@@ -87,7 +86,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		    // else if(Mode==ELE_Line_Patrol_Mode)                 //ELE循迹下的转向环控制
 			//    Turn_Pwm=ELE_turn(Gyro_Turn);
 		    // else
-			   Turn_Pwm=Turn(Gyro_Turn);							//转向环PID控制     
+			// Turn_Pwm=Turn(Gyro_Turn);							//转向环PID控制     
 			
 			Motor_Left=Balance_Pwm+Velocity_Pwm+Turn_Pwm;       //计算左轮电机最终PWM
 			Motor_Right=Balance_Pwm+Velocity_Pwm-Turn_Pwm;      //计算右轮电机最终PWM
@@ -137,13 +136,13 @@ Output  : Speed control PWM
 int Velocity(int encoder_left,int encoder_right)
 {  
     static float velocity,Encoder_Least,Encoder_bias,Movement;
-	  static float Encoder_Integral,Target_Velocity;
-	  //================遥控前进后退部分====================// 
-		if(Flag_follow==1||Flag_avoid==1) Target_Velocity = 30; //如果进入跟随/避障模式,降低速度
-		else 											        Target_Velocity = 50;
-		if(Flag_front==1)    	Movement=Target_Velocity/Flag_velocity;	  //收到前进信号
-		else if(Flag_back==1)	Movement=-Target_Velocity/Flag_velocity;  //收到后退信号
-	    else  Movement=Move_X;	
+	  static float Encoder_Integral=0;
+	//   //================遥控前进后退部分====================// 
+	// 	if(Flag_follow==1||Flag_avoid==1) Target_Velocity = 30; //如果进入跟随/避障模式,降低速度
+	// 	else 											        Target_Velocity = 50;
+	// 	if(Flag_front==1)    	Movement=Target_Velocity/Flag_velocity;	  //收到前进信号
+	// 	else if(Flag_back==1)	Movement=-Target_Velocity/Flag_velocity;  //收到后退信号
+	//     else  Movement=Move_X;	
 	
    //=============超声波功能（跟随/避障）==================// 
 	  if(Mode==Ultrasonic_Follow_Mode&&(Distance>200&&Distance<500)&&Flag_Left!=1&&Flag_Right!=1) //跟随
@@ -154,7 +153,7 @@ int Velocity(int encoder_left,int encoder_right)
 			 Movement=-Target_Velocity/Flag_velocity;
 		
    //================速度PI控制器=====================//	
-		Encoder_Least =0-(encoder_left+encoder_right);                    //获取最新速度偏差=目标速度（此处为零）-测量速度（左右编码器之和） 
+		Encoder_Least =Target_Velocity*2-(encoder_left+encoder_right);                    //获取最新速度偏差=目标速度-测量速度（左右编码器之和） 
 		Encoder_bias *= 0.86;		                                          //一阶低通滤波器       
 		Encoder_bias += Encoder_Least*0.14;	                              //一阶低通滤波器，减缓速度变化 
 		Encoder_Integral +=Encoder_bias;                                  //积分出位移 积分时间：10ms
@@ -174,20 +173,20 @@ Output  : Turn control PWM
 返回  值：转向控制PWM
 作    者：轮趣科技（东莞）有限公司
 **************************************************************************/
-int Turn(float gyro)
-{
-	 static float Turn_Target,turn,Turn_Amplitude=54;
-	 float Kp=Turn_Kp,Kd;			//修改转向速度，请修改Turn_Amplitude即可
-	//===================遥控左右旋转部分=================//
-	 if(1==Flag_Left)	        Turn_Target=-Turn_Amplitude/Flag_velocity;
-	 else if(1==Flag_Right)	  Turn_Target=Turn_Amplitude/Flag_velocity; 
-	 else Turn_Target=0;
-	 if(1==Flag_front||1==Flag_back)  Kd=Turn_Kd;        
-	 else Kd=0;   //转向的时候取消陀螺仪的纠正 有点模糊PID的思想
-  //===================转向PD控制器=================//
-	 turn=Turn_Target*Kp/100+gyro*Kd/100+Move_Z;//结合Z轴陀螺仪进行PD控制
-	 return turn;								 				 //转向环PWM右转为正，左转为负
-}
+// int Turn(float gyro)
+// {
+// 	 static float Turn_Target,turn,Turn_Amplitude=54;
+// 	 float Kp=Turn_Kp,Kd;			//修改转向速度，请修改Turn_Amplitude即可
+// 	//===================遥控左右旋转部分=================//
+// 	 if(1==Flag_Left)	        Turn_Target=-Turn_Amplitude/Flag_velocity;
+// 	 else if(1==Flag_Right)	  Turn_Target=Turn_Amplitude/Flag_velocity; 
+// 	 else Turn_Target=0;
+// 	 if(1==Flag_front||1==Flag_back)  Kd=Turn_Kd;        
+// 	 else Kd=0;   //转向的时候取消陀螺仪的纠正 有点模糊PID的思想
+//   //===================转向PD控制器=================//
+// 	 turn=Turn_Target*Kp/100+gyro*Kd/100+Move_Z;//结合Z轴陀螺仪进行PD控制
+// 	 return turn;								 				 //转向环PWM右转为正，左转为负
+// }
 
 /**************************************************************************
 Function: Assign to PWM register
@@ -725,25 +724,25 @@ Output  : none
 入口参数: 无
 返回  值：无
 **************************************************************************/	 	
-void ELE_Mode(void)
-{
-	if(Mode == ELE_Line_Patrol_Mode && Flag_Left!=1 &&Flag_Right!=1)
-	{
-		int Sum = 0;
-		Sensor_Left = Get_Adc(2);
-		Sensor_Middle = Get_Adc(1);
-		Sensor_Right = Get_Adc(9);
-		Sum = Sensor_Left*1+Sensor_Middle*100+Sensor_Right*199;			
-		Sensor = Sum/(Sensor_Left+Sensor_Middle+Sensor_Right);
-//		if(Detect_Barrier() == No_Barrier)		//检测到无障碍物
-				Move_X=tracking_speed;       //给小车一个大概300mm/s的速度
-//		else									//有障碍物
-//		{
-//			Move_X = 0;
-//		}	
-	}
+// void ELE_Mode(void)
+// {
+// 	if(Mode == ELE_Line_Patrol_Mode && Flag_Left!=1 &&Flag_Right!=1)
+// 	{
+// 		int Sum = 0;
+// 		Sensor_Left = Get_Adc(2);
+//		Sensor_Middle = Get_Adc(1);
+// 		Sensor_Right = Get_Adc(9);
+// 		Sum = Sensor_Left*1+Sensor_Middle*100+Sensor_Right*199;			
+// 		Sensor = Sum/(Sensor_Left+Sensor_Middle+Sensor_Right);
+// //		if(Detect_Barrier() == No_Barrier)		//检测到无障碍物
+// 				Move_X=tracking_speed;       //给小车一个大概300mm/s的速度
+// //		else									//有障碍物
+// //		{
+// //			Move_X = 0;
+// //		}	
+// 	}
 	
-}
+// }
 
 /**************************************************************************
 函数功能：ELE模式转向控制
@@ -751,14 +750,14 @@ void ELE_Mode(void)
 返回  值：转向控制PWM
 作    者：平衡小车之家
 **************************************************************************/
-int ELE_turn(float gyro)//转向控制
-{
-	float Turn;     
-	float Bias,kp=60,Kd=0.2;	  
-	Bias=Sensor-100;
-	Turn=Bias*kp+gyro*Kd;
-	  return Turn;
-}
+// int ELE_turn(float gyro)//转向控制
+// {
+// 	float Turn;     
+// 	float Bias,kp=60,Kd=0.2;	  
+// 	Bias=Sensor-100;
+// 	Turn=Bias*kp+gyro*Kd;
+// 	  return Turn;
+// }
 
 
 /**************************************************************************

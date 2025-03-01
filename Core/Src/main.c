@@ -50,7 +50,9 @@ u8 Flag_follow=0,Flag_avoid=0;							//超声波跟随、超声波壁障标志位
 float Acceleration_Z;                       //Z轴加速度计  
 volatile u8 delay_flag,delay_50;            //提供延时的变量
 float Balance_Kp=25500,Balance_Kd=135,Velocity_Kp=16000,Velocity_Ki=80,Turn_Kp=4200,Turn_Kd=60;//PID参数（放大100倍）
-
+u8 Sensor_Left=0,Sensor_MiddleLeft=0,Sensor_MiddleRight=0,Sensor_Right=0;     //储存四个红外传感器的值的数组
+float Sensor_Kp=0.5,Sensor_Kd=0.1;        //红外传感器的PID参数
+float Target_Velocity=0;                   //目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -106,6 +108,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  Init_Sensor_Pins();  // 新增的传感器引脚初始化
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_TIM1_Init();
