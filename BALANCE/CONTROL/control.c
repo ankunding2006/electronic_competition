@@ -42,28 +42,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			Encoder_Left=-Read_Encoder(3);            					//读取左轮编码器的值，前进为正，后退为负
 			Encoder_Right=Read_Encoder(4);           					//读取右轮编码器的值，前进为正，后退为负
 																													//左轮A相接TIM2_CH1,右轮A相接TIM4_CH2,故这里两个编码器的极性相同
-			Get_Velocity_Form_Encoder(Encoder_Left,Encoder_Right);//编码器读数转速度（mm/s）
-            // //串口打印速度(50ms打印一次)
-			// static int print_count = 0;
-			// print_count++;
-			// if(print_count >= 10) // 5ms执行一次中断，10次就是50ms
-			// {
-			// 	print_count = 0;
-			// 	// 打印左右轮的速度信息
-			// 	// printf("Speed_L:%.2f cm/s, Speed_R:%.2f cm/s\r\n", 
-			// 	// 	(float)Encoder_Left, (float)Encoder_Right);
-			// 	// 也可以选择打印平均速度
-			// 	// printf("Average Speed:%.2f cm/s\r\n", 
-			// 	//       ((float)Encoder_Left+(float)Encoder_Right)*0.02724);
-			// }
-			// if(Flag_Target==1)                        					//10ms控制一次
-			// {
-				
-			// 	Voltage_Temp=Get_battery_volt();		    					//读取电池电压		
-			// 	Voltage_Count++;                       						//平均值计数器
-			// 	Voltage_All+=Voltage_Temp;              					//多次采样累积
-			// 	if(Voltage_Count==100) Voltage=Voltage_All/100,Voltage_All=0,Voltage_Count=0;//求平均值						                                               
-			// }                                         					//10ms控制一次
+			Get_Velocity_Form_Encoder(Encoder_Left,Encoder_Right);//编码器读数转速度（mm/s）                                       					//10ms控制一次
 			if(delay_flag==1)
 			{
 				delay_50++;
@@ -74,27 +53,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			if(Flag_follow==0&&Flag_avoid==0)	Led_Flash(100);   //LED闪烁;常规模式 1s改变一次指示灯的状态	
 			if(Flag_follow==1||Flag_avoid==1)	Led_Flash(0);     //LED常亮;超声波跟随/避障模式	
 			Key();                                    		    //扫描按键状态 单击双击可以改变小车运行状态
-			// Select_Zhongzhi();
-			// Lidar_Avoid();                                      //雷达避障模式
-		    // Lidar_Follow();                                         //雷达跟随模式
-		    // Lidar_Straight();                                       //雷达走直线模式
-			// CCD_Mode();                                          //CCD巡线
-		    // ELE_Mode();                                          //电磁巡线
-			//Balance_Pwm=Balance(Angle_Balance,Gyro_Balance);    //平衡PID控制 Gyro_Balance平衡角速度极性：前倾为正，后倾为负
-			//Balance_Pwm=0;
-			Velocity(Encoder_Left,Encoder_Right);  
-			// if(Mode ==CCD_Line_Patrol_Mode)                     //CCD循迹下的转向环控制 
-			//    Turn_Pwm=CCD_turn(CCD_Zhongzhi,Gyro_Turn);
-		    // else if(Mode==ELE_Line_Patrol_Mode)                 //ELE循迹下的转向环控制
-			//    Turn_Pwm=ELE_turn(Gyro_Turn);
-		    // else
-			// Turn_Pwm=Turn(Gyro_Turn);							//转向环PID控制   
-            Turn_Pwm = 100*Sensor_PID();  			// 获取PID转向值
-			// printf("Velocity_Pwm: %d, Turn_Pwm: %d, Encoder_Right: %d Encoder_Left: %d\r\n", Velocity_Pwm, Turn_Pwm, Encoder_Right, Encoder_Left);
+			Velocity(Encoder_Left,Encoder_Right);    
+            Turn_Pwm = 90*Sensor_PID();  			// 获取PID转向值
 			Motor_Left=Velocity_Pwm+Turn_Pwm;       //计算左轮电机最终PWM
-			Motor_Right=Velocity_Pwm-Turn_Pwm;      //计算右轮电机最终PWM
-			// Motor_Left=Velocity_Pwm;       //计算左轮电机最终PWM
-			// Motor_Right=Velocity_Pwm;      //计算右轮电机最终PWM																								//PWM值正数使小车前进，负数使小车后退
+			Motor_Right=Velocity_Pwm-Turn_Pwm;      //计算右轮电机最终PWM																							//PWM值正数使小车前进，负数使小车后退
 			Motor_Left=PWM_Limit(Motor_Left,6900,-6900);
 			Motor_Right=PWM_Limit(Motor_Right,6900,-6900);			//PWM限幅
 		    if(Flag_Stop==1)							
