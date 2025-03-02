@@ -142,6 +142,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    //打印距离
+    printf("Distance: %d mm\r\n", Distance);
     //打印四个红外传感器的值
     // Get_Sensor_Value();
     // printf("Sensor1: %d, Sensor2: %d, Sensor3: %d, Sensor4: %d\r\n", 

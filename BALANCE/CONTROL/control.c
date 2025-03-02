@@ -149,12 +149,10 @@ int Velocity(int encoder_left,int encoder_right)
 	//     else  Movement=Move_X;	
 	
    //=============超声波功能（跟随/避障）==================// 
-	//   if(Mode==Ultrasonic_Follow_Mode&&(Distance>200&&Distance<500)&&Flag_Left!=1&&Flag_Right!=1) //跟随
-	// 		 Movement=Target_Velocity/Flag_velocity;
-	// 	if(Mode==Ultrasonic_Follow_Mode&&Distance<200&&Flag_Left!=1&&Flag_Right!=1) 
-	// 		 Movement=-Target_Velocity/Flag_velocity;
-	// 	if(Mode==Ultrasonic_Avoid_Mode&&Distance<450&&Flag_Left!=1&&Flag_Right!=1)  //超声波避障
-	// 		 Movement=-Target_Velocity/Flag_velocity;
+	    if(Mode==Ultrasonic_Follow_Mode&&(Distance>200&&Distance<500)) //跟随
+			 Movement=Target_Velocity/Flag_velocity;
+		if(Mode==Ultrasonic_Follow_Mode&&Distance<200) 
+			 Movement=-Target_Velocity/Flag_velocity;
 		
    //================速度PI控制器=====================//	
 		Encoder_Least =Target_Velocity*2-(encoder_left+encoder_right);                    //获取最新速度偏差=目标速度-测量速度（左右编码器之和） 
