@@ -1,11 +1,3 @@
-*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin'
-Build target 'B570'
-compiling gpio.c...
-../Core/Inc/LineFinder.h(29): warning:  #1-D: last line of file ends without a newline
-  #define SENSOR4_PORT GPIOC
-../Core/Src/gpio.c: 1 warning, 0 errors
-linking...
-Program Size: Code=36066 RO-data=3910 RW-data=552 ZI-data=7040  
-FromELF: creating hex file...
-"..\Output\B570.axf" - 0 Error(s), 1 Warning(s).
-Build Time Elapsed:  00:00:06
+Load "..\\Output\\B570.axf" 
+Erase Done.Programming Done.Verify OK.Application running ...
+Flash Load finished at 11:36:11

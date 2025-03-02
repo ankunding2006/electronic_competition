@@ -15,9 +15,10 @@ extern float Sensor_Kp,Sensor_KI,Sensor_Kd;
 void Get_Sensor_Value(void);
 //红外传感器PID控制函数的声明，返回类型统一为int
 int Sensor_PID(void);
-
-#define SENSOR1_PIN GPIO_PIN_2
-#define SENSOR1_PORT GPIOB
+//以下四个宏定义分别对应四个红外传感器的引脚
+//依次为左、中左、中右、右
+#define SENSOR1_PIN GPIO_PIN_0
+#define SENSOR1_PORT GPIOA
 
 #define SENSOR2_PIN GPIO_PIN_13
 #define SENSOR2_PORT GPIOC

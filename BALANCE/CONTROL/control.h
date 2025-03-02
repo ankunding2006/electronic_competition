@@ -23,7 +23,7 @@ extern u8 Sensor_Left,Sensor_MiddleLeft,Sensor_MiddleRight,Sensor_Right;
 extern float Sensor_Kp,Sensor_Kd;
 extern float Target_Velocity;
 
-#define __PWM_0__								//调试模式，不输出PWM
+//#define __PWM_0__								//调试模式，不输出PWM
 
 #define PI 3.14159265							//PI圆周率
 #define Control_Frequency  200.0	//编码器读取频率

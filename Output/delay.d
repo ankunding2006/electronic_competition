@@ -59,3 +59,4 @@
 ..\output\delay.o: C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\delay.o: ..\Hardware\Lidar\Lidar.h
 ..\output\delay.o: ..\Hardware\ELE_CCD\ELE_CCD.h
+..\output\delay.o: ../Core/Inc/LineFinder.h

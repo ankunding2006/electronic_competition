@@ -58,3 +58,4 @@
 ..\output\inv_mpu.o: C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\inv_mpu.o: ..\Hardware\Lidar\Lidar.h
 ..\output\inv_mpu.o: ..\Hardware\ELE_CCD\ELE_CCD.h
+..\output\inv_mpu.o: ../Core/Inc/LineFinder.h

@@ -59,3 +59,4 @@
 ..\output\mpu6050.o: C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\mpu6050.o: ..\Hardware\Lidar\Lidar.h
 ..\output\mpu6050.o: ..\Hardware\ELE_CCD\ELE_CCD.h
+..\output\mpu6050.o: ../Core/Inc/LineFinder.h

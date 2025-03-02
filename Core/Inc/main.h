@@ -37,7 +37,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+void Init_Sensor_Pins(void);
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

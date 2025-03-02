@@ -59,3 +59,4 @@
 ..\output\stm32f1xx_hal_msp.o: C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\stm32f1xx_hal_msp.o: ..\Hardware\Lidar\Lidar.h
 ..\output\stm32f1xx_hal_msp.o: ..\Hardware\ELE_CCD\ELE_CCD.h
+..\output\stm32f1xx_hal_msp.o: ../Core/Inc/LineFinder.h

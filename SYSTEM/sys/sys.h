@@ -141,4 +141,5 @@ void MSR_MSP(u32 addr);	//…Ë÷√∂—’ªµÿ÷∑
 #include <string.h>
 #include "Lidar.h"
 #include "ELE_CCD.h"
+#include "LineFinder.h"
 #endif

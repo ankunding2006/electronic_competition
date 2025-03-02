@@ -29,7 +29,7 @@ Output  : none
 **************************************************************************/
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	static int Voltage_Temp,Voltage_Count,Voltage_All;		//电压测量相关变量
+	//static int Voltage_Temp,Voltage_Count,Voltage_All;		//电压测量相关变量
 	static u8 Flag_Target;																//控制函数相关变量，提供10ms基准
 	int Encoder_Left,Encoder_Right;             					//左右编码器的脉冲计数
 	int Balance_Pwm,Velocity_Pwm,Turn_Pwm;		  					//平衡环PWM变量，速度环PWM变量，转向环PWM变
@@ -87,7 +87,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			//    Turn_Pwm=ELE_turn(Gyro_Turn);
 		    // else
 			// Turn_Pwm=Turn(Gyro_Turn);							//转向环PID控制   
-            Turn_Pwm = Sensor_PID();  			// 获取PID转向值
+            //Turn_Pwm = Sensor_PID();  			// 获取PID转向值
 			
 			Motor_Left=Balance_Pwm+Velocity_Pwm+Turn_Pwm;       //计算左轮电机最终PWM
 			Motor_Right=Balance_Pwm+Velocity_Pwm-Turn_Pwm;      //计算右轮电机最终PWM
@@ -264,7 +264,7 @@ u8 Turn_Off(float angle, int voltage)
 		temp=0;
 	return temp;			
 }
-	
+#pragma diag_suppress 550  // 在函数开始时添加
 /**************************************************************************
 Function: Get angle
 Input   : way：The algorithm of getting angle 1：DMP  2：kalman  3：Complementary filtering
@@ -324,6 +324,7 @@ void Get_Angle(u8 way)
 	}
 
 }
+#pragma diag_default 550   // 在函数结束时恢复
 /**************************************************************************
 Function: Absolute value function
 Input   : a：Number to be converted

@@ -61,3 +61,4 @@
 ..\output\gpio.o: ..\Hardware\Lidar\Lidar.h
 ..\output\gpio.o: ..\Hardware\ELE_CCD\ELE_CCD.h
 ..\output\gpio.o: ../Core/Inc/LineFinder.h
+..\output\gpio.o: ../Core/Inc/LineFinder.h

@@ -8,6 +8,7 @@
         "sys.h": "c",
         "show.h": "c",
         "oled.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "gpio.h": "c"
     }
 }

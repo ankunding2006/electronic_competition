@@ -16,7 +16,7 @@ Update：2021-04-29
 
 All rights reserved
 ***********************************************/
-
+#pragma diag_suppress 550  // 在函数开始时添加
 #include "filter.h"
 /**************************************************************************
 Function: Simple Kalman filter
@@ -142,6 +142,7 @@ float Kalman_Filter_y(float Accel,float Gyro)
 	angle_dot   = Gyro - Q_bias;	//输出值(后验估计)的微分=角速度
 	return angle;
 }
+#pragma diag_default 550   // 在函数结束时恢复
 /**************************************************************************
 Function: First order complementary filtering
 Input   : acceleration、angular velocity
