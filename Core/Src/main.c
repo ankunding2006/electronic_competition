@@ -142,28 +142,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    //打印距离
-    printf("Distance: %d mm\r\n", Distance);
-    //打印四个红外传感器的值
-    // Get_Sensor_Value();
-    // printf("Sensor1: %d, Sensor2: %d, Sensor3: %d, Sensor4: %d\r\n", 
-    //     Sensor_Left, Sensor_MiddleLeft, Sensor_MiddleRight, Sensor_Right);
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-// 	  if(Flag_Show==0)          		//使用MiniBalance APP和OLED显示屏
-// 			{
-// //				Get_Angle(Way_Angle);   
-// 				 APP_Show();								//发送数据给APP
-// 				 oled_show();          			//显示屏打开
-// 			}
-// 			else                      		//使用MiniBalance上位机 上位机使用的时候需要严格的时序，故此时关闭app监控部分和OLED显示屏
-// 			{
-// 				 DataScope();          			//开启MiniBalance上位机
-// 			}	
-		  delay_flag=1;	
-		  delay_50=0;		
-			while(delay_flag);	     			//示波器需要50ms	高精度延时，delay函数不满足要求，故使用MPU6050中断提供50ms延时
+      
+		  // delay_flag=1;	
+		  // delay_50=0;		
+			// while(delay_flag);	     			//示波器需要50ms	高精度延时，delay函数不满足要求，故使用MPU6050中断提供50ms延时
   }
   /* USER CODE END 3 */
 }

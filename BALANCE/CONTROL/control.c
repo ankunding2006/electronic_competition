@@ -39,8 +39,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	{  
 			Flag_Target=!Flag_Target;
 			Get_Angle(Way_Angle);                     					//更新姿态，5ms一次，更高的采样频率可以改善卡尔曼滤波和互补滤波的效果
-			Encoder_Left=-Read_Encoder(3);            					//读取左轮编码器的值，前进为正，后退为负
-			Encoder_Right=Read_Encoder(4);           					//读取右轮编码器的值，前进为正，后退为负
+			Encoder_Left=Read_Encoder(3);            					//读取左轮编码器的值，前进为正，后退为负
+			Encoder_Right=-Read_Encoder(4);           					//读取右轮编码器的值，前进为正，后退为负
 																													//左轮A相接TIM2_CH1,右轮A相接TIM4_CH2,故这里两个编码器的极性相同
 			Get_Velocity_Form_Encoder(Encoder_Left,Encoder_Right);//编码器读数转速度（mm/s）                                       					//10ms控制一次
 			if(delay_flag==1)
@@ -54,9 +54,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			if(Flag_follow==1||Flag_avoid==1)	Led_Flash(0);     //LED常亮;超声波跟随/避障模式	
 			Key();                                    		    //扫描按键状态 单击双击可以改变小车运行状态
 			Velocity(Encoder_Left,Encoder_Right);    
-            Turn_Pwm = 90*Sensor_PID();  			// 获取PID转向值
-			Motor_Left=Velocity_Pwm+Turn_Pwm;       //计算左轮电机最终PWM
-			Motor_Right=Velocity_Pwm-Turn_Pwm;      //计算右轮电机最终PWM																							//PWM值正数使小车前进，负数使小车后退
+            Turn_Pwm = 60*Sensor_PID();  			// 获取PID转向值
+			Motor_Left=Velocity_Pwm-Turn_Pwm;       //计算左轮电机最终PWM
+			Motor_Right=Velocity_Pwm+Turn_Pwm;      //计算右轮电机最终PWM																							//PWM值正数使小车前进，负数使小车后退
 			Motor_Left=PWM_Limit(Motor_Left,6900,-6900);
 			Motor_Right=PWM_Limit(Motor_Right,6900,-6900);			//PWM限幅
 		    if(Flag_Stop==1)							
@@ -163,12 +163,12 @@ Output  : none
 **************************************************************************/
 void Set_Pwm(int motor_left,int motor_right)
 {
-  if(motor_left>0)	    AIN1=1,			AIN2=0; //前进 
-	else           			  AIN1=0,			AIN2=1; //后退
-	PWMA=myabs(motor_left);	
-  if(motor_right>0)			BIN1=1,			BIN2=0;	//前进
-	else 	        			  BIN1=0,			BIN2=1; //后退
-	PWMB=myabs(motor_right);
+  if(motor_left>0)	    AIN1=0,			AIN2=1; //修改为反方向
+  else           			  AIN1=1,			AIN2=0; //修改为反方向
+  PWMA=myabs(motor_left);	
+  if(motor_right>0)			BIN1=0,			BIN2=1;	//修改为反方向
+  else 	        			  BIN1=1,			BIN2=0; //修改为反方向
+  PWMB=myabs(motor_right);
 }
 /**************************************************************************
 Function: PWM limiting range

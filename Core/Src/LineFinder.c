@@ -9,10 +9,9 @@
 #include "LineFinder.h"
 
 float base_velocity = 0;
-u16 Speed_Limit = 1000;
+
 
 // 滤波相关参数
-#define FILTER_SAMPLES 5  // 采样次数
 u8 sensor_history[4][FILTER_SAMPLES]; // 传感器历史数据
 u8 filter_index = 0;      // 当前采样索引
 
@@ -69,25 +68,24 @@ int Sensor_PID(void)
     
     // 通过传感器状态计算偏差
     // 不同传感器组合对应不同的偏差值
-    if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
-        error = 0; // 全白，可能偏离轨道，保持当前方向
-    else if (Sensor_Left == 1 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
-        error = -3; // 强左转
-    else if (Sensor_Left == 0 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
-        error = -1.5; // 左转
-    else if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 1 && Sensor_Right == 0)
-        error = 1.5; // 右转
-    else if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 0 && Sensor_Right == 1)
-        error = 3; // 强右转
-    else if (Sensor_Left == 1 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
-        error = -2; // 偏左
-    else if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 1 && Sensor_Right == 1)
-        error = 2; // 偏右
-    else if (Sensor_Left == 0 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 1 && Sensor_Right == 0)
-        error = 0; // 居中，直行
-    else if (Sensor_Left == 1 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 1 && Sensor_Right == 1)
-        error = 0; // 全黑，可能是交叉路口，直行
-    
+        if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
+            error = ERROR_CENTER; // 全白，可能偏离轨道，保持当前方向
+        else if (Sensor_Left == 1 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
+            error = ERROR_STRONG_LEFT; // 强左转
+        else if (Sensor_Left == 0 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
+            error = ERROR_LEFT; // 左转
+        else if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 1 && Sensor_Right == 0)
+            error = ERROR_RIGHT; // 右转
+        else if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 0 && Sensor_Right == 1)
+            error = ERROR_STRONG_RIGHT; // 强右转
+        else if (Sensor_Left == 1 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
+            error = ERROR_SLIGHT_LEFT; // 偏左
+        else if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 1 && Sensor_Right == 1)
+            error = ERROR_SLIGHT_RIGHT; // 偏右
+        else if (Sensor_Left == 0 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 1 && Sensor_Right == 0)
+            error = ERROR_CENTER; // 居中，直行
+        else if (Sensor_Left == 1 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 1 && Sensor_Right == 1)
+            error = ERROR_CENTER; // 全黑，可能是交叉路口，直行
     // 计算PID值
     P = error;
     I = I + error; // 积分项累加当前误差
