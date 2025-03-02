@@ -62,18 +62,7 @@ void Error_Handler(void);
 #define MPU6050_EXTI_GPIO_Port GPIOA
 #define MPU6050_EXTI_EXTI_IRQn EXTI15_10_IRQn
 /* USER CODE BEGIN Private defines */
-// 在某个头文件中（如main.h）添加这些宏定义
-#define SENSOR1_PIN GPIO_PIN_2
-#define SENSOR1_PORT GPIOB
 
-#define SENSOR2_PIN GPIO_PIN_13
-#define SENSOR2_PORT GPIOC
-
-#define SENSOR3_PIN GPIO_PIN_14
-#define SENSOR3_PORT GPIOC
-
-#define SENSOR4_PIN GPIO_PIN_15
-#define SENSOR4_PORT GPIOC
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

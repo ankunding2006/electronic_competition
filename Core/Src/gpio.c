@@ -21,7 +21,7 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "LineFinder.h"
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
@@ -107,23 +107,30 @@ void MX_GPIO_Init(void)
 // 在MX_GPIO_Init函数中添加或创建新的初始化函数
 void Init_Sensor_Pins(void)
 {
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  
-  // 启用GPIO时钟
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  
-  // 配置PB2为浮空输入
-  GPIO_InitStruct.Pin = GPIO_PIN_2;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;  // 浮空输入
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-  
-  // 配置PC13, PC14, PC15为浮空输入
-  GPIO_InitStruct.Pin = GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;  // 浮空输入
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    
+    // 使能对应的GPIO时钟
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+    
+    // 配置传感器1引脚（左）
+    GPIO_InitStruct.Pin = SENSOR1_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_PULLUP; // 根据您的传感器特性选择上拉或下拉
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(SENSOR1_PORT, &GPIO_InitStruct);
+    
+    // 配置传感器2引脚（中左）
+    GPIO_InitStruct.Pin = SENSOR2_PIN;
+    HAL_GPIO_Init(SENSOR2_PORT, &GPIO_InitStruct);
+    
+    // 配置传感器3引脚（中右）
+    GPIO_InitStruct.Pin = SENSOR3_PIN;
+    HAL_GPIO_Init(SENSOR3_PORT, &GPIO_InitStruct);
+    
+    // 配置传感器4引脚（右）
+    GPIO_InitStruct.Pin = SENSOR4_PIN;
+    HAL_GPIO_Init(SENSOR4_PORT, &GPIO_InitStruct);
 }
 /* USER CODE END 2 */
 

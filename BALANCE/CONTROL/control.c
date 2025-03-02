@@ -86,7 +86,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		    // else if(Mode==ELE_Line_Patrol_Mode)                 //ELE循迹下的转向环控制
 			//    Turn_Pwm=ELE_turn(Gyro_Turn);
 		    // else
-			// Turn_Pwm=Turn(Gyro_Turn);							//转向环PID控制     
+			// Turn_Pwm=Turn(Gyro_Turn);							//转向环PID控制   
+            Turn_Pwm = Sensor_PID();  			// 获取PID转向值
 			
 			Motor_Left=Balance_Pwm+Velocity_Pwm+Turn_Pwm;       //计算左轮电机最终PWM
 			Motor_Right=Balance_Pwm+Velocity_Pwm-Turn_Pwm;      //计算右轮电机最终PWM

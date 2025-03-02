@@ -27,24 +27,14 @@ Project File Date:  03/01/2025
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin'
 Build target 'B570'
-compiling control.c...
-..\BALANCE\CONTROL\control.c(32): warning:  #177-D: variable "Voltage_Temp"  was declared but never referenced
-  	static int Voltage_Temp,Voltage_Count,Voltage_All;		//电压测量相关变量
-..\BALANCE\CONTROL\control.c(32): warning:  #177-D: variable "Voltage_Count"  was declared but never referenced
-  	static int Voltage_Temp,Voltage_Count,Voltage_All;		//电压测量相关变量
-..\BALANCE\CONTROL\control.c(32): warning:  #177-D: variable "Voltage_All"  was declared but never referenced
-  	static int Voltage_Temp,Voltage_Count,Voltage_All;		//电压测量相关变量
-..\BALANCE\CONTROL\control.c(277): warning:  #550-D: variable "accel_x"  was set but never used
-  	float gyro_x,gyro_y,accel_x,accel_y,accel_z;
-..\BALANCE\CONTROL\control.c(277): warning:  #550-D: variable "accel_y"  was set but never used
-  	float gyro_x,gyro_y,accel_x,accel_y,accel_z;
-..\BALANCE\CONTROL\control.c(277): warning:  #550-D: variable "accel_z"  was set but never used
-  	float gyro_x,gyro_y,accel_x,accel_y,accel_z;
-..\BALANCE\CONTROL\control.c: 6 warnings, 0 errors
+compiling gpio.c...
+../Core/Inc/LineFinder.h(29): warning:  #1-D: last line of file ends without a newline
+  #define SENSOR4_PORT GPIOC
+../Core/Src/gpio.c: 1 warning, 0 errors
 linking...
-Program Size: Code=35038 RO-data=3914 RW-data=508 ZI-data=7020  
+Program Size: Code=36066 RO-data=3910 RW-data=552 ZI-data=7040  
 FromELF: creating hex file...
-"..\Output\B570.axf" - 0 Error(s), 6 Warning(s).
+"..\Output\B570.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -68,7 +58,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@6.1.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>
