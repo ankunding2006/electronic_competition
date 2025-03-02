@@ -19,9 +19,9 @@ All rights reserved
 #ifndef __CONTROL_H
 #define __CONTROL_H
 #include "sys.h"
-extern u8 Sensor_Left,Sensor_MiddleLeft,Sensor_MiddleRight,Sensor_Right;
-extern float Sensor_Kp,Sensor_Kd;
-extern float Target_Velocity;
+
+extern u8 Sensor_Left, Sensor_MiddleLeft, Sensor_MiddleRight, Sensor_Right; // 改为 u8 类型
+extern float Target_Velocity; 
 
 //#define __PWM_0__								//调试模式，不输出PWM
 

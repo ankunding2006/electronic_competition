@@ -9,6 +9,7 @@
         "show.h": "c",
         "oled.h": "c",
         "main.h": "c",
-        "gpio.h": "c"
+        "gpio.h": "c",
+        "linefinder.h": "c"
     }
 }

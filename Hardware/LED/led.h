@@ -20,7 +20,7 @@ Update£º2023-01-04
 All rights reserved
 ***********************************************/
 //LED ¶Ë¿Ú¶¨Òå
-#define LED PAout(4) // PB13
+#define LED PCout(13)
 void Led_Flash(u16 time);
 
 #endif

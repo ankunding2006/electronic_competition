@@ -52,7 +52,7 @@ volatile u8 delay_flag,delay_50;            //提供延时的变量
 float Balance_Kp=25500,Balance_Kd=135,Velocity_Kp=16000,Velocity_Ki=80,Turn_Kp=4200,Turn_Kd=60;//PID参数（放大100倍）
 u8 Sensor_Left=0,Sensor_MiddleLeft=0,Sensor_MiddleRight=0,Sensor_Right=0;     //四个红外传感器的值,检测到黑线时，值为 1，检测到白线时，值为 0
 float Sensor_Kp=500,Sensor_KI=5,Sensor_Kd=100;        //红外传感器的PID参数（放大100倍）
-float Target_Velocity=0;                   //目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
+float Target_Velocity=10;                   //目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -108,6 +108,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
   Init_Sensor_Pins();  // 新增的传感器引脚初始化
   MX_ADC1_Init();
   MX_ADC2_Init();
@@ -120,7 +121,8 @@ int main(void)
 	JTAG_Set(JTAG_SWD_DISABLE);     //关闭JTAG接口
 	JTAG_Set(SWD_ENABLE);           //打开SWD接口 可以利用主板的SWD接口调试
   delay_init();                   //延迟函数初始化
-  OLED_Init();                    //OLED初始化
+  // OLED_Init();                    //OLED初始化
+  KEY_Init();                     //按键初始化
   MPU6050_initialize();           //MPU6050初始化	
 	DMP_Init();                     //初始化DMP 
   //  while(Choose()) { }

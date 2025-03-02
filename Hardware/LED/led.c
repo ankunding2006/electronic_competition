@@ -25,7 +25,12 @@ All rights reserved
 **************************************************************************/
 void Led_Flash(u16 time)
 {
-	  static int temp;
-	  if  (0==time) LED=0;                               //低电平点亮
-	  else if(++temp==time)	LED=~LED,temp=0;
+    static int temp;
+    if(0==time) 
+        PCout(13)=0;   //LED亮
+    else if(++temp==time)
+    {
+        PCout(13)=~PCout(13);   //LED翻转
+        temp=0;
+    }
 }

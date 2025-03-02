@@ -22,16 +22,21 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 c:\Users\34118\Desktop\7.WHEELTEC B570 平衡小车源码（HAL库版)\B570\MDK-ARM\B570.uvprojx
-Project File Date:  03/01/2025
+Project File Date:  03/02/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin'
 Build target 'B570'
-compiling main.c...
+compiling control.c...
+..\BALANCE\CONTROL\control.c(35): warning:  #177-D: variable "Balance_Pwm"  was declared but never referenced
+  	int Balance_Pwm,Velocity_Pwm,Turn_Pwm;		  					//平衡环PWM变量，速度环PWM变量，转向环PWM变
+..\BALANCE\CONTROL\control.c(35): warning:  #177-D: variable "Turn_Pwm"  was declared but never referenced
+  	int Balance_Pwm,Velocity_Pwm,Turn_Pwm;		  					//平衡环PWM变量，速度环PWM变量，转向环PWM变
+..\BALANCE\CONTROL\control.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=35042 RO-data=3910 RW-data=512 ZI-data=7016  
+Program Size: Code=37950 RO-data=4090 RW-data=504 ZI-data=5992  
 FromELF: creating hex file...
-"..\Output\B570.axf" - 0 Error(s), 0 Warning(s).
+"..\Output\B570.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 

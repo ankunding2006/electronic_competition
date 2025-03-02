@@ -61,7 +61,7 @@ int Sensor_PID(void)
 {
     static float error = 0, last_error = 0;
     static float P = 0, I = 0, D = 0;
-    static float base_velocity = 30; // 基准速度，避免每次重置
+    static float base_velocity = 0; // 基准速度，避免每次重置
     float PID_value = 0;
     
     // 读取传感器状态并滤波
@@ -94,8 +94,8 @@ int Sensor_PID(void)
     D = error - last_error; // 微分项为当前误差减去上次误差
     
     // I值限幅，防止积分饱和
-    if (I > 30) I = 30;
-    if (I < -30) I = -30;
+    if (I > INTEGRAL_LIMIT) I = INTEGRAL_LIMIT;
+    if (I < -INTEGRAL_LIMIT) I = -INTEGRAL_LIMIT;
     
     // 使用PID所有三个分量计算输出值
     // 将PID参数缩小100倍，因为在定义时已经放大了100倍

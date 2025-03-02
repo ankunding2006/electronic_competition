@@ -28,3 +28,6 @@ int Sensor_PID(void);
 
 #define SENSOR4_PIN GPIO_PIN_15
 #define SENSOR4_PORT GPIOC
+
+//积分限幅宏定义
+#define INTEGRAL_LIMIT 30
