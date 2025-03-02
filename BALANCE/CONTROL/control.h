@@ -43,6 +43,8 @@ extern float Target_Velocity;
 #define ELE_Line_Patrol_Mode				7
 #define CCD_Line_Patrol_Mode				6
 
+
+
 //避障模式的参数
 #define  avoid_Distance 350//避障距离300mm
 #define avoid_Angle1 50 //避障的角度，在310~360、0~50°的范围

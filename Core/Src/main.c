@@ -23,7 +23,7 @@
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
-
+#include "LineFinder.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "sys.h"
@@ -49,10 +49,10 @@ u8 PID_Send; 					                    	//调参相关变量
 u8 Flag_follow=0,Flag_avoid=0;							//超声波跟随、超声波壁障标志位
 float Acceleration_Z;                       //Z轴加速度计  
 volatile u8 delay_flag,delay_50;            //提供延时的变量
-float Balance_Kp=25500,Balance_Kd=135,Velocity_Kp=16000,Velocity_Ki=80,Turn_Kp=4200,Turn_Kd=60;//PID参数（放大100倍）
+float Balance_Kp=25500,Balance_Kd=135,Velocity_Kp=16000,Velocity_Ki=120,Turn_Kp=17000,Turn_Kd=100;//PID参数（放大100倍）
 u8 Sensor_Left=0,Sensor_MiddleLeft=0,Sensor_MiddleRight=0,Sensor_Right=0;     //四个红外传感器的值,检测到黑线时，值为 1，检测到白线时，值为 0
 float Sensor_Kp=500,Sensor_KI=5,Sensor_Kd=100;        //红外传感器的PID参数（放大100倍）
-float Target_Velocity=10;                   //目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
+float Target_Velocity=20;                   //目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -134,6 +134,7 @@ int main(void)
 	// 	CCD_Init();
 	// if(Mode==ELE_Line_Patrol_Mode)
 	// 	ELE_Init();	
+	base_velocity=Target_Velocity;
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn); //开启引脚外部中断
   /* USER CODE END 2 */
 

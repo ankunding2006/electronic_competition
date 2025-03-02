@@ -8,7 +8,7 @@
 #include "main.h"
 #include "LineFinder.h"
 
-
+float base_velocity = 0;
 u16 Speed_Limit = 1000;
 
 // 滤波相关参数
@@ -61,9 +61,7 @@ int Sensor_PID(void)
 {
     static float error = 0, last_error = 0;
     static float P = 0, I = 0, D = 0;
-    static float base_velocity = 0; // 基准速度，避免每次重置
     float PID_value = 0;
-    
     // 读取传感器状态并滤波
     Get_Sensor_Value();
     
@@ -105,17 +103,17 @@ int Sensor_PID(void)
     last_error = error;
     
     // 如果误差较大，减小目标速度以更好地调整方向
-    if (fabs(error) > 2) {
-        Target_Velocity = base_velocity * 0.7; // 降低速度到基准速度的70%
-    } else {
-        // 恢复正常速度
-        Target_Velocity = base_velocity;
-    }
+    // if (fabs(error) > 2) {
+    //     base_velocity=Target_Velocity;
+    //     Target_Velocity = base_velocity * 0.7; // 降低速度到基准速度的70%
+    // } else {
+    //     // 恢复正常速度
+    //     Target_Velocity = base_velocity;
+    // }
     
     // 限制PID输出范围，防止转向过猛
     if (PID_value > Speed_Limit) PID_value = Speed_Limit;
     if (PID_value < -Speed_Limit) PID_value = -Speed_Limit;
-    
     // 返回PID值，保持正负号以确保方向正确
     return (int)PID_value;
 }

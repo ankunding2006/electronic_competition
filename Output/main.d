@@ -60,3 +60,4 @@
 ..\output\main.o: ..\Hardware\Lidar\Lidar.h
 ..\output\main.o: ..\Hardware\ELE_CCD\ELE_CCD.h
 ..\output\main.o: ../Core/Inc/LineFinder.h
+..\output\main.o: ../Core/Inc/LineFinder.h
