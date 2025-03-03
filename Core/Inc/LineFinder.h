@@ -30,15 +30,15 @@ int Sensor_PID(void);
 #define SENSOR4_PORT GPIOC
 
 #define Speed_Limit 1000
-#define INTEGRAL_LIMIT 30//积分限幅宏定义
-#define FILTER_SAMPLES 3  // 采样次数
+#define INTEGRAL_LIMIT 25//积分限幅宏定义
+#define FILTER_SAMPLES 4  // 采样次数
 #define Error_threshold 2
 
 #define ERROR_CENTER      0     // 居中，直行
-#define ERROR_STRONG_LEFT -4    // 强左转
-#define ERROR_LEFT        -1.5  // 左转
-#define ERROR_RIGHT       1.5   // 右转
-#define ERROR_STRONG_RIGHT 4    // 强右转
+#define ERROR_STRONG_LEFT -2.8    // 强左转
+#define ERROR_LEFT        -1.2  // 左转
+#define ERROR_RIGHT       1.2   // 右转
+#define ERROR_STRONG_RIGHT 2.8    // 强右转
 #define ERROR_SLIGHT_LEFT -2    // 偏左
 #define ERROR_SLIGHT_RIGHT 2    // 偏右
 

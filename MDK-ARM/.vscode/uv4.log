@@ -1,3 +1,4 @@
 Load "..\\Output\\B570.axf" 
 Erase Done.Programming Done.Verify OK.Application running ...
-Flash Load finished at 20:59:51
+RDDI-DAP Error
+Flash Load finished at 14:48:45

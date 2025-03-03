@@ -39,7 +39,7 @@ int Temperature;                            //温度变量
 int Voltage,Middle_angle;                   //电池电压采样相关的变量
 float Angle_Balance,Gyro_Balance,Gyro_Turn; //平衡倾角 平衡陀螺仪 转向陀螺仪
 u8 LD_Successful_Receive_flag;              //雷达成功接收数据标志位
-u8 Mode =Ultrasonic_Follow_Mode;								//模式选择，默认是普通的控制模式
+u8 Mode =0;								//模式选择，默认是普通的控制模式
 u8 CCD_Zhongzhi,CCD_Yuzhi;                  //CCD中值和阈值
 u16 ADV[128]={0};                           //存放CCD的数据的数组
 u16 determine;                              //雷达跟随模式的一个标志位
@@ -51,8 +51,8 @@ float Acceleration_Z;                       //Z轴加速度计
 volatile u8 delay_flag,delay_50;            //提供延时的变量
 float Balance_Kp=25500,Balance_Kd=135,Velocity_Kp=16000,Velocity_Ki=120,Turn_Kp=17000,Turn_Kd=100;//PID参数（放大100倍）
 u8 Sensor_Left=0,Sensor_MiddleLeft=0,Sensor_MiddleRight=0,Sensor_Right=0;     //四个红外传感器的值,检测到黑线时，值为 1，检测到白线时，值为 0
-float Sensor_Kp=500,Sensor_KI=5,Sensor_Kd=100;        //红外传感器的PID参数（放大100倍）
-float Target_Velocity=20;                   //目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
+float Sensor_Kp=23500,Sensor_KI=0,Sensor_Kd=0;        //红外传感器的PID参数（放大100倍）
+float Target_Velocity=22;                   //目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -142,7 +142,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      
+      Turn_Pwm = 60*Sensor_PID();  			// 获取PID转向值
 		  // delay_flag=1;	
 		  // delay_50=0;		
 			// while(delay_flag);	     			//示波器需要50ms	高精度延时，delay函数不满足要求，故使用MPU6050中断提供50ms延时

@@ -54,7 +54,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			if(Flag_follow==1||Flag_avoid==1)	Led_Flash(0);     //LED常亮;超声波跟随/避障模式	
 			Key();                                    		    //扫描按键状态 单击双击可以改变小车运行状态
 			Velocity(Encoder_Left,Encoder_Right);    
-            Turn_Pwm = 60*Sensor_PID();  			// 获取PID转向值
+            Turn_Pwm = Sensor_PID();  			// 获取PID转向值
 			Motor_Left=Velocity_Pwm-Turn_Pwm;       //计算左轮电机最终PWM
 			Motor_Right=Velocity_Pwm+Turn_Pwm;      //计算右轮电机最终PWM																							//PWM值正数使小车前进，负数使小车后退
 			Motor_Left=PWM_Limit(Motor_Left,6900,-6900);

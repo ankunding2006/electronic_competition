@@ -71,13 +71,17 @@ int Sensor_PID(void)
         if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
             error = ERROR_CENTER; // 全白，可能偏离轨道，保持当前方向
         else if (Sensor_Left == 1 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
+        {    
             error = ERROR_STRONG_LEFT; // 强左转
+        }
         else if (Sensor_Left == 0 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
             error = ERROR_LEFT; // 左转
         else if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 1 && Sensor_Right == 0)
             error = ERROR_RIGHT; // 右转
         else if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 0 && Sensor_Right == 1)
+        {     
             error = ERROR_STRONG_RIGHT; // 强右转
+        }
         else if (Sensor_Left == 1 && Sensor_MiddleLeft == 1 && Sensor_MiddleRight == 0 && Sensor_Right == 0)
             error = ERROR_SLIGHT_LEFT; // 偏左
         else if (Sensor_Left == 0 && Sensor_MiddleLeft == 0 && Sensor_MiddleRight == 1 && Sensor_Right == 1)
@@ -110,7 +114,7 @@ int Sensor_PID(void)
         if (!speed_reduced) {
             // 误差刚超过阈值，首次降低速度，先保存原始速度
             base_velocity = Target_Velocity;  // 无论如何都保存当前速度
-            Target_Velocity = base_velocity * 0.7; // 降低速度到基准速度的70%
+            Target_Velocity = base_velocity * 0.83; // 降低速度到基准速度的70%
             speed_reduced = 1; // 标记速度已降低
         }
     } else if (fabs(error) < Error_threshold && speed_reduced) {
