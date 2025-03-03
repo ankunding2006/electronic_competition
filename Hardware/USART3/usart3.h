@@ -22,5 +22,8 @@ All rights reserved
 extern u8 Usart2_Receive_buf[1];
 extern u8 Usart3_Receive_buf[1];
 
+void Bluetooth_Echo_Test(void);
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle);
+
 #endif
 

@@ -10,6 +10,7 @@
         "oled.h": "c",
         "main.h": "c",
         "gpio.h": "c",
-        "linefinder.h": "c"
+        "linefinder.h": "c",
+        "usart3.h": "c"
     }
 }

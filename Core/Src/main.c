@@ -118,6 +118,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+  Bluetooth_Echo_Test();          //蓝牙回显测试
 	JTAG_Set(JTAG_SWD_DISABLE);     //关闭JTAG接口
 	JTAG_Set(SWD_ENABLE);           //打开SWD接口 可以利用主板的SWD接口调试
   delay_init();                   //延迟函数初始化
@@ -142,6 +143,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+      	if(PID_Send==1)			//发送PID参数,在APP调参界面显示
+          {
+            printf("%d:%d:%d:%d:%d:%d:%d\r\n",(int)Velocity_Kp,(int)Velocity_Ki,(int)Sensor_Kp,(int)Sensor_KI,0,0,0);//打印到APP上面	
+            PID_Send=0;	
+          }	
       Turn_Pwm = 60*Sensor_PID();  			// 获取PID转向值
 		  // delay_flag=1;	
 		  // delay_50=0;		

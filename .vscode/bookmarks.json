@@ -1,0 +1,24 @@
+{
+	"files": [
+		{
+			"path": "Hardware/ELE_CCD/ele_ccd.c",
+			"bookmarks": [
+				{
+					"line": 158,
+					"column": 2,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "Core/Src/main.c",
+			"bookmarks": [
+				{
+					"line": 33,
+					"column": 32,
+					"label": ""
+				}
+			]
+		}
+	]
+}

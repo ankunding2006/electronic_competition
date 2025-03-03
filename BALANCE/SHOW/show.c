@@ -126,13 +126,13 @@ void APP_Show(void)
 	flag=!flag;
 	if(PID_Send==1)			//发送PID参数,在APP调参界面显示
 	{
-		printf("{C%d:%d:%d:%d:%d:%d:%d:%d:%d}$",(int)Balance_Kp,(int)Balance_Kd,(int)Velocity_Kp,(int)Velocity_Ki,(int)Turn_Kp,(int)Turn_Kd,0,0,0);//打印到APP上面	
+		printf("%d:%d:%d:%d:%d:%d:%d",(int)Velocity_Kp,(int)Velocity_Ki,(int)Sensor_Kp,(int)Sensor_KI,0,0,0);//打印到APP上面	
 		PID_Send=0;	
 	}	
-   else	if(flag==0)		// 发送电池电压，速度，角度等参数，在APP首页显示
-		printf("{A%d:%d:%d:%d}$",(int)Encoder_Left_Show,(int)Encoder_Right_Show,(int)Voltage_Show,(int)Angle_Balance); //打印到APP上面
-	 else								//发送小车姿态角，在波形界面显示
-	  printf("{B%d:%d:%d}$",(int)Pitch,(int)Roll,(int)Yaw); //x，y，z轴角度 在APP上面显示波形
+//    else	if(flag==0)		// 发送电池电压，速度，角度等参数，在APP首页显示
+// 		printf("{A%d:%d:%d:%d}$",(int)Encoder_Left_Show,(int)Encoder_Right_Show,(int)Voltage_Show,(int)Angle_Balance); //打印到APP上面
+// 	 else								//发送小车姿态角，在波形界面显示
+// 	  printf("{B%d:%d:%d}$",(int)Pitch,(int)Roll,(int)Yaw); //x，y，z轴角度 在APP上面显示波形
 																													//可按格式自行增加显示波形，最多可显示五个
 }
 /**************************************************************************

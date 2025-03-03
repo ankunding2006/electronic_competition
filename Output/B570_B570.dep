@@ -1,7 +1,7 @@
 Dependencies for Project 'B570', Target 'B570': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f103xb.s)(0x6708CC49)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include--pd "__UVISION_VERSION SETA 541" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xb.lst --xref -o ..\output\startup_stm32f103xb.o --depend ..\output\startup_stm32f103xb.d)
-F (../Core/Src/main.c)(0x67C5509B)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
+F (../Core/Src/main.c)(0x67C57E5E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
 I (../Core/Inc/main.h)(0x67C4106D)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x6704925B)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x6708CE91)
@@ -51,7 +51,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -110,7 +110,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -169,7 +169,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -228,7 +228,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -286,7 +286,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -346,7 +346,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -406,7 +406,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -976,7 +976,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1034,7 +1034,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1093,7 +1093,7 @@ I (..\Hardware\ENCODER\encoder.h)(0x63B773E4)
 I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1152,7 +1152,7 @@ I (..\Hardware\ENCODER\encoder.h)(0x63B773E4)
 I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1211,7 +1211,7 @@ I (..\Hardware\ENCODER\encoder.h)(0x63B773E4)
 I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1221,8 +1221,8 @@ I (..\Hardware\Lidar\Lidar.h)(0x6708BDC9)
 I (..\Hardware\ELE_CCD\ELE_CCD.h)(0x63B8CC5E)
 I (../Core/Inc/LineFinder.h)(0x67C478C2)
 I (..\Hardware\OLED\oledfont.h)(0x5D67CC4A)
-F (..\Hardware\USART3\usart3.c)(0x6708CA3E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\usart3.o --omf_browse ..\output\usart3.crf --depend ..\output\usart3.d)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+F (..\Hardware\USART3\usart3.c)(0x67C58035)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\usart3.o --omf_browse ..\output\usart3.crf --depend ..\output\usart3.d)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\SYSTEM\sys\sys.h)(0x67C4106D)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x6704925B)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x6704925B)
@@ -1330,7 +1330,7 @@ I (..\Hardware\ENCODER\encoder.h)(0x63B773E4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1390,7 +1390,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1448,7 +1448,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1507,7 +1507,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1516,7 +1516,7 @@ I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5E8E3CC2)
 I (..\Hardware\Lidar\Lidar.h)(0x6708BDC9)
 I (..\Hardware\ELE_CCD\ELE_CCD.h)(0x63B8CC5E)
 I (../Core/Inc/LineFinder.h)(0x67C478C2)
-F (..\BALANCE\CONTROL\control.c)(0x67C47774)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\control.o --omf_browse ..\output\control.crf --depend ..\output\control.d)
+F (..\BALANCE\CONTROL\control.c)(0x67C55F15)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\control.o --omf_browse ..\output\control.crf --depend ..\output\control.d)
 I (..\BALANCE\CONTROL\control.h)(0x67C42293)
 I (..\SYSTEM\sys\sys.h)(0x67C4106D)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x6704925B)
@@ -1566,7 +1566,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1579,7 +1579,7 @@ F (..\BALANCE\DATASCOP_DP\DataScop_DP.c)(0x63B63C04)(--c99 -c --cpu Cortex-M3 -g
 I (..\BALANCE\DATASCOP_DP\DataScope_DP.h)(0x63B63C0A)
 F (..\BALANCE\MPU6050\filter.c)(0x67C4106D)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\filter.o --omf_browse ..\output\filter.crf --depend ..\output\filter.d)
 I (..\BALANCE\MPU6050\filter.h)(0x6183D284)
-F (..\BALANCE\MPU6050\inv_mpu.c)(0x60991E10)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\inv_mpu.o --omf_browse ..\output\inv_mpu.crf --depend ..\output\inv_mpu.d)
+F (..\BALANCE\MPU6050\inv_mpu.c)(0x67C56C98)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\inv_mpu.o --omf_browse ..\output\inv_mpu.crf --depend ..\output\inv_mpu.d)
 I (..\SYSTEM\sys\sys.h)(0x67C4106D)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x6704925B)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x6704925B)
@@ -1629,7 +1629,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1688,7 +1688,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1747,7 +1747,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1756,7 +1756,7 @@ I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5E8E3CC2)
 I (..\Hardware\Lidar\Lidar.h)(0x6708BDC9)
 I (..\Hardware\ELE_CCD\ELE_CCD.h)(0x63B8CC5E)
 I (../Core/Inc/LineFinder.h)(0x67C478C2)
-F (..\BALANCE\SHOW\show.c)(0x67C4106D)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\show.o --omf_browse ..\output\show.crf --depend ..\output\show.d)
+F (..\BALANCE\SHOW\show.c)(0x67C576F5)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\Hardware\ELE_CCD -I ..\Hardware\ENCODER -I ..\Hardware\KEY -I ..\Hardware\LED -I ..\Hardware\OLED -I ..\Hardware\PSTWO -I ..\Hardware\USART3 -I ..\BALANCE\CONTROL -I ..\BALANCE\DATASCOP_DP -I ..\BALANCE\MPU6050 -I ..\BALANCE\SHOW -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\Hardware\IIC -I ..\Hardware\Lidar-I.\RTE\_B570-IC:\Users\34118\AppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include-IC:\Users\34118\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o ..\output\show.o --omf_browse ..\output\show.crf --depend ..\output\show.d)
 I (..\BALANCE\SHOW\show.h)(0x6708BECA)
 I (..\SYSTEM\sys\sys.h)(0x67C4106D)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x6704925B)
@@ -1806,7 +1806,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
@@ -1865,7 +1865,7 @@ I (..\Hardware\IIC\ioi2c.h)(0x6183D2A4)
 I (..\Hardware\KEY\key.h)(0x658E68AF)
 I (..\Hardware\LED\led.h)(0x67C4106D)
 I (..\Hardware\OLED\oled.h)(0x6708BF05)
-I (..\Hardware\USART3\usart3.h)(0x6708CAD1)
+I (..\Hardware\USART3\usart3.h)(0x67C55989)
 I (..\BALANCE\MPU6050\dmpKey.h)(0x50CA9A0C)
 I (..\BALANCE\MPU6050\dmpmap.h)(0x50CA9A0C)
 I (C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)

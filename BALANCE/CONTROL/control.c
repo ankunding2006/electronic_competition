@@ -33,6 +33,7 @@ volatile int Balance_Pwm,Velocity_Pwm,Turn_Pwm;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+	//Bluetooth_Echo_Test();          //蓝牙回显测试
 	//static int Voltage_Temp,Voltage_Count,Voltage_All;		//电压测量相关变量
 	static u8 Flag_Target;																//控制函数相关变量，提供10ms基准		  					//平衡环PWM变量，速度环PWM变量，转向环PWM变
 	if(GPIO_Pin==MPU6050_EXTI_Pin)
