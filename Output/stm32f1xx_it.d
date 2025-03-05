@@ -59,5 +59,5 @@
 ..\output\stm32f1xx_it.o: C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\stm32f1xx_it.o: ..\Hardware\Lidar\Lidar.h
 ..\output\stm32f1xx_it.o: ..\Hardware\ELE_CCD\ELE_CCD.h
-..\output\stm32f1xx_it.o: ../Core/Inc/LineFinder.h
+..\output\stm32f1xx_it.o: ../Core/Inc/LineFollow.h
 ..\output\stm32f1xx_it.o: ../Core/Inc/stm32f1xx_it.h

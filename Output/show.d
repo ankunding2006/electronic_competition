@@ -59,4 +59,4 @@
 ..\output\show.o: C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\show.o: ..\Hardware\Lidar\Lidar.h
 ..\output\show.o: ..\Hardware\ELE_CCD\ELE_CCD.h
-..\output\show.o: ../Core/Inc/LineFinder.h
+..\output\show.o: ../Core/Inc/LineFollow.h

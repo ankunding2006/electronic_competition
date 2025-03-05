@@ -41,7 +41,7 @@
 "..\output\inv_mpu_dmp_motion_driver.o"
 "..\output\mpu6050.o"
 "..\output\show.o"
-"..\output\linefinder.o"
+"..\output\linefollow.o"
 --strict --scatter "..\Output\B570.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

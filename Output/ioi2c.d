@@ -59,4 +59,4 @@
 ..\output\ioi2c.o: C:\Users\34118\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\output\ioi2c.o: ..\Hardware\Lidar\Lidar.h
 ..\output\ioi2c.o: ..\Hardware\ELE_CCD\ELE_CCD.h
-..\output\ioi2c.o: ../Core/Inc/LineFinder.h
+..\output\ioi2c.o: ../Core/Inc/LineFollow.h
