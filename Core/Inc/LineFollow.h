@@ -48,7 +48,7 @@ void Init_Sensor_Pins(void);
 
 // 参数和限制定义
 #define INTEGRAL_LIMIT 3500    // 积分限幅
-#define FILTER_SAMPLES 4      // 滤波采样次数
+#define FILTER_SAMPLES 2      // 滤波采样次数
 
 // 导入外部变量
 extern volatile int Encoder_Left, Encoder_Right;

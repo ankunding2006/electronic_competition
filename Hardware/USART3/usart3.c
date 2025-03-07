@@ -35,12 +35,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle) // 接收回调函数
 	if (UartHandle->Instance == USART3)
 	{
 		/*******************测试代码***********************/
-		if (UartHandle->Instance == USART3)
-		{
-			// 立即回显收到的字符
-			HAL_UART_Transmit(&huart3, Usart3_Receive_buf, 1, 10);
-			PID_Send = 1;
-		}
+		// if (UartHandle->Instance == USART3)
+		// {
+		// 	// 立即回显收到的字符
+		// 	HAL_UART_Transmit(&huart3, Usart3_Receive_buf, 1, 10);
+		// 	PID_Send = 1;
+		// }
 		/**************************************************/
 
 		static int uart_receive = 0; // 蓝牙接收相关变量
@@ -48,7 +48,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle) // 接收回调函数
 		static float Data;
 		uart_receive = Usart3_Receive_buf[0];
 		Usart3_Receive = uart_receive;
-		if (Usart3_Receive == 0x01)
+		if (Usart3_Receive == 0x31)
 			Flag_Stop = !Flag_Stop;
 		if (Usart3_Receive == 0x7B)
 			Flag_PID = 1; // APP参数指令起始位
@@ -79,24 +79,25 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle) // 接收回调函数
 				case 0x31:
 					Velocity_Ki = Data;
 					break;
-				// case 0x32:
-				// 	Sensor_Kp = Data;
-				// 	break;
-				// case 0x33:
-				// 	Sensor_KI = Data;
-				// 	break;
-				// case 0x34:
-				// 	Sensor_Kd = Data;
-				// 	break; // 预留
-				// case 0x35:
-				// 	ZoomRatio = Data;
-				// 	break; // 预留
-				// case 0x36:
-				// 	break; // 预留
-				// case 0x37:
-				// 	break; // 预留
-				// case 0x38:
-				// 	break; // 预留
+				case 0x32:
+					Sensor_Kp = Data;
+					break;
+				case 0x33:
+					Sensor_KI = Data;
+					break;
+				case 0x34:
+					Sensor_Kd = Data;
+					break; // 预留
+				case 0x35:
+					ZoomRatio = Data;
+					break; // 预留
+				case 0x36:
+					Target_Velocity = Data;
+					break; // 预留
+				case 0x37:
+					break; // 预留
+				case 0x38:
+					break; // 预留
 				}
 			}
 			Flag_PID = 0;

@@ -105,7 +105,8 @@ extern u8 Flag_follow, Flag_avoid;                                              
 extern float Acceleration_Z;                                                     // Z轴加速度计
 extern volatile u8 delay_flag, delay_50;                                         // 提供延时的变量
 extern float Balance_Kp, Balance_Kd, Velocity_Kp, Velocity_Ki, Turn_Kp, Turn_Kd; // PID参数（放大100倍）
-extern float ZoomRatio;
+extern u16 ZoomRatio;
+extern float Target_Velocity; // 目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
 //////////////////////////////////////////////////////////////////////////////
 // 以下为汇编函数
 void WFI_SET(void);      // 执行WFI指令

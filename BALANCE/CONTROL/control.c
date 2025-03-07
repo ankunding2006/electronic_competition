@@ -50,17 +50,17 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			if (delay_50 == 10)
 				delay_50 = 0, delay_flag = 0, LD_Successful_Receive_flag = 0; // 给主函数提供50ms的精准延时，示波器需要50ms高精度延时
 		}
-		if (Mode == Ultrasonic_Avoid_Mode || Mode == Ultrasonic_Follow_Mode)
-			Read_Distane(); // 获取超声波测量距离值
-		if (Flag_follow == 0 && Flag_avoid == 0)
-			Led_Flash(100); // LED闪烁;常规模式 1s改变一次指示灯的状态
-		if (Flag_follow == 1 || Flag_avoid == 1)
-			Led_Flash(0); // LED常亮;超声波跟随/避障模式
+		// if (Mode == Ultrasonic_Avoid_Mode || Mode == Ultrasonic_Follow_Mode)
+		// 	Read_Distane(); // 获取超声波测量距离值
+		// if (Flag_follow == 0 && Flag_avoid == 0)
+		// 	Led_Flash(100); // LED闪烁;常规模式 1s改变一次指示灯的状态
+		// if (Flag_follow == 1 || Flag_avoid == 1)
+		// 	Led_Flash(0); // LED常亮;超声波跟随/避障模式
 		Key();			  // 扫描按键状态 单击双击可以改变小车运行状态
 		Velocity(Encoder_Left, Encoder_Right);
 		Turn_Pwm = Sensor_PID();			   // 获取PID转向值
-		Motor_Left = Velocity_Pwm -  ZoomRatio * Turn_Pwm;  // 计算左轮电机最终PWM
-		Motor_Right = Velocity_Pwm + ZoomRatio * Turn_Pwm; // 计算右轮电机最终PWM																							//PWM值正数使小车前进，负数使小车后退
+		Motor_Left = Velocity_Pwm -  (float)ZoomRatio/1000 * Turn_Pwm;  // 计算左轮电机最终PWM
+		Motor_Right = Velocity_Pwm + (float)ZoomRatio/1000 * Turn_Pwm; // 计算右轮电机最终PWM																							//PWM值正数使小车前进，负数使小车后退
 		Motor_Left = PWM_Limit(Motor_Left, 6900, -6900);
 		Motor_Right = PWM_Limit(Motor_Right, 6900, -6900); // PWM限幅
 		if (Flag_Stop == 1)
@@ -170,7 +170,7 @@ Output  : none
 **************************************************************************/
 void Set_Pwm(int motor_left, int motor_right)
 {
-	if (motor_left > 0)
+	if (motor_left > 0)   
 		AIN1 = 0, AIN2 = 1; // 修改为反方向
 	else
 		AIN1 = 1, AIN2 = 0; // 修改为反方向

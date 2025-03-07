@@ -114,7 +114,7 @@ int Sensor_PID(void)
         if (!speed_reduced) {
             // 误差刚超过阈值，首次降低速度，先保存原始速度
             base_velocity = Target_Velocity;  // 无论如何都保存当前速度
-            Target_Velocity = base_velocity * 0.83; // 降低速度到基准速度的70%
+            Target_Velocity = base_velocity * 0.70; // 降低速度到基准速度的70%
             speed_reduced = 1; // 标记速度已降低
         }
     } else if (fabs(error) < Error_threshold && speed_reduced) {

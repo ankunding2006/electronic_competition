@@ -13,7 +13,8 @@
     "linefinder.h": "c",
     "usart3.h": "c",
     "math.h": "c",
-    "linefollow.h": "c"
+    "linefollow.h": "c",
+    "ioi2c.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
   "C_Cpp_Runner.cppCompilerPath": "C:/msys64/ucrt64/bin/g++.exe",

@@ -53,8 +53,8 @@ volatile u8 delay_flag, delay_50;                                               
 float Balance_Kp = 25500, Balance_Kd = 135, Velocity_Kp = 16000, Velocity_Ki = 120, Turn_Kp = 17000, Turn_Kd = 100; // PID参数（放大100倍）
 u8 Sensor_Left = 0, Sensor_MiddleLeft = 0, Sensor_Middle = 0, Sensor_MiddleRight = 0, Sensor_Right = 0;             // 传感器状态
 float Sensor_Kp = 813.4, Sensor_KI = 2.1, Sensor_Kd = 236.0;                                                           // 传感器的PID参数（放大100倍）
-float Target_Velocity = 22;     
-float ZoomRatio=1;                                                                                    // 目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
+float Target_Velocity = 16;     
+u16 ZoomRatio=1000;                                                                                    // 目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -147,9 +147,9 @@ int main(void)
   {
     if (PID_Send == 1) // 发送PID参数,在APP调参界面显示
     {
-      printf("%d:%d:%d:%d:%d:%d:%d\r\n", (int)Velocity_Kp, (int)Velocity_Ki, (int)Sensor_Kp, (int)Sensor_KI, (int)Sensor_Kd, (int)ZoomRatio, 0); // 打印到APP上面
+      printf("%d:%d:%d:%d:%d:%d:%d\r\n", (int)Velocity_Kp, (int)Velocity_Ki, (int)Sensor_Kp, (int)Sensor_KI, (int)Sensor_Kd, (int)ZoomRatio, (int)Target_Velocity); // 打印到APP上面
       PID_Send = 0;
-    }
+		}
     Turn_Pwm = Sensor_PID(); // 获取PID转向值
     // delay_flag=1;
     // delay_50=0;
