@@ -45,4 +45,3 @@ int Sensor_PID(void);
 
 extern volatile int Encoder_Left,Encoder_Right;             					//左右编码器的脉冲计数
 extern volatile int Balance_Pwm,Velocity_Pwm,Turn_Pwm;
-extern float base_velocity;

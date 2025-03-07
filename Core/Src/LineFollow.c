@@ -7,22 +7,24 @@
 #include "main.h"
 #include "LineFollow.h"
 
-// 定义全局变量
-float base_velocity = 0;              // 基准速度
+#if FILTER_SAMPLES > 0
 u8 sensor_history[5][FILTER_SAMPLES]; // 传感器历史数据，用于滤波
 u8 filter_index = 0;                  // 当前滤波采样索引
-u8 one_time = 0;                      // 特殊状态标记
-u8 one_flag = 0;                      // 临时状态标记
-u8 channel_num = 0;                   // 通道计数
+#endif
 
+u8 one_time = 0;    // 特殊状态标记
+u8 one_flag = 0;    // 临时状态标记
+u8 channel_num = 0; // 通道计数
 /*
 介绍: 获取传感器数据并进行滤波处理
-功能: 读取五路红外传感器，并使用均值滤波处理
+功能: 读取五路红外传感器，并根据配置决定是否使用均值滤波处理
 参数: 无
 返回: 无
 */
 void Get_Sensor_Value(void)
 {
+#if FILTER_SAMPLES > 0
+    // 启用滤波功能的代码
     u8 i;
     u8 sum_left = 0, sum_middle_left = 0, sum_middle = 0, sum_middle_right = 0, sum_right = 0;
 
@@ -53,8 +55,15 @@ void Get_Sensor_Value(void)
     Sensor_Middle = (sum_middle > (FILTER_SAMPLES / 2)) ? 1 : 0;
     Sensor_MiddleRight = (sum_middle_right > (FILTER_SAMPLES / 2)) ? 1 : 0;
     Sensor_Right = (sum_right > (FILTER_SAMPLES / 2)) ? 1 : 0;
+#else
+    // 不使用滤波，直接读取当前值
+    Sensor_Left = HAL_GPIO_ReadPin(SENSOR1_PORT, SENSOR1_PIN);        // 左
+    Sensor_MiddleLeft = HAL_GPIO_ReadPin(SENSOR2_PORT, SENSOR2_PIN);  // 中左
+    Sensor_Middle = HAL_GPIO_ReadPin(SENSOR3_PORT, SENSOR3_PIN);      // 中
+    Sensor_MiddleRight = HAL_GPIO_ReadPin(SENSOR4_PORT, SENSOR4_PIN); // 中右
+    Sensor_Right = HAL_GPIO_ReadPin(SENSOR5_PORT, SENSOR5_PIN);       // 右
+#endif
 }
-
 /*
 介绍: 传感器的PID控制函数
 功能: 根据传感器状态计算转向PWM值
@@ -213,19 +222,6 @@ int Sensor_PID(void)
 
         // 保存上一次偏差
         sensor_bias_last = sensor_bias;
-
-        // 根据偏差大小动态调整速度
-        if (fabs(sensor_bias) > 100)
-        {
-            if (base_velocity == 0) // 首次保存基准速度
-                base_velocity = Target_Velocity;
-            Target_Velocity = base_velocity * 0.8; // 降低至80%
-        }
-        else if (fabs(sensor_bias) < 50 && base_velocity > 0)
-        {
-            Target_Velocity = base_velocity; // 恢复基准速度
-        }
-
         return (int)PID_value;
     }
     else
@@ -234,7 +230,6 @@ int Sensor_PID(void)
         return 0;
     }
 }
-
 /**
  * @brief  初始化红外传感器引脚
  * @param  无
@@ -272,6 +267,7 @@ void Init_Sensor_Pins(void)
     GPIO_InitStruct.Pin = SENSOR5_PIN;
     HAL_GPIO_Init(SENSOR5_PORT, &GPIO_InitStruct);
 
+#if FILTER_SAMPLES > 0
     /* 初始化滤波数组 */
     for (int i = 0; i < 5; i++)
     {
@@ -283,4 +279,5 @@ void Init_Sensor_Pins(void)
 
     /* 重置滤波索引 */
     filter_index = 0;
+#endif
 }

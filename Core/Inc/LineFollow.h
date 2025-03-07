@@ -13,7 +13,6 @@
 //导入外部红外传感器数据变量
 extern u8 Sensor_Left, Sensor_MiddleLeft, Sensor_Middle, Sensor_MiddleRight, Sensor_Right;
 extern float Target_Velocity;
-extern float base_velocity;
 
 //导入外部红外传感器的PID参数
 extern float Sensor_Kp, Sensor_KI, Sensor_Kd;
@@ -48,7 +47,7 @@ void Init_Sensor_Pins(void);
 
 // 参数和限制定义
 #define INTEGRAL_LIMIT 3500    // 积分限幅
-#define FILTER_SAMPLES 2      // 滤波采样次数
+#define FILTER_SAMPLES 0      // 滤波采样次数
 
 // 导入外部变量
 extern volatile int Encoder_Left, Encoder_Right;

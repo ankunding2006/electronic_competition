@@ -49,7 +49,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle) // 接收回调函数
 		uart_receive = Usart3_Receive_buf[0];
 		Usart3_Receive = uart_receive;
 		if (Usart3_Receive == 0x31)
+		{
 			Flag_Stop = !Flag_Stop;
+			if (Flag_Stop)
+				HAL_UART_Transmit(&huart3, (uint8_t *)"1\r\n", 6, 100);
+			else
+				HAL_UART_Transmit(&huart3, (uint8_t *)"0\r\n", 7, 100);
+		}
 		if (Usart3_Receive == 0x7B)
 			Flag_PID = 1; // APP参数指令起始位
 		if (Usart3_Receive == 0x7D)

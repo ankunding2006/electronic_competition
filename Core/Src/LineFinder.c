@@ -8,8 +8,6 @@
 #include "main.h"
 #include "LineFinder.h"
 
-float base_velocity = 0;
-
 
 // 滤波相关参数
 u8 sensor_history[4][FILTER_SAMPLES]; // 传感器历史数据
@@ -105,24 +103,6 @@ int Sensor_PID(void)
     
     // 保存上一次误差
     last_error = error;
-    
-    // 根据误差大小动态调整速度
-    // 当误差超过阈值时降低速度，误差恢复时恢复速度
-    // 根据误差大小动态调整速度
-    // 当误差超过阈值时降低速度，误差恢复时恢复速度
-    if (fabs(error) >= Error_threshold) {
-        if (!speed_reduced) {
-            // 误差刚超过阈值，首次降低速度，先保存原始速度
-            base_velocity = Target_Velocity;  // 无论如何都保存当前速度
-            Target_Velocity = base_velocity * 0.70; // 降低速度到基准速度的70%
-            speed_reduced = 1; // 标记速度已降低
-        }
-    } else if (fabs(error) < Error_threshold && speed_reduced) {
-        // 误差恢复到较小值，恢复原来的速度
-        Target_Velocity = base_velocity;
-        speed_reduced = 0; // 清除降速标记
-    }
-    
     // 限制PID输出范围，防止转向过猛
     if (PID_value > Speed_Limit) PID_value = Speed_Limit;
     if (PID_value < -Speed_Limit) PID_value = -Speed_Limit;

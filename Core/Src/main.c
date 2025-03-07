@@ -52,7 +52,7 @@ float Acceleration_Z;                                                           
 volatile u8 delay_flag, delay_50;                                                                                   // 提供延时的变量
 float Balance_Kp = 25500, Balance_Kd = 135, Velocity_Kp = 16000, Velocity_Ki = 120, Turn_Kp = 17000, Turn_Kd = 100; // PID参数（放大100倍）
 u8 Sensor_Left = 0, Sensor_MiddleLeft = 0, Sensor_Middle = 0, Sensor_MiddleRight = 0, Sensor_Right = 0;             // 传感器状态
-float Sensor_Kp = 813.4, Sensor_KI = 2.1, Sensor_Kd = 236.0;                                                           // 传感器的PID参数（放大100倍）
+float Sensor_Kp = 640, Sensor_KI = 2.1, Sensor_Kd = 115;                                                           // 传感器的PID参数（放大100倍）
 float Target_Velocity = 16;     
 u16 ZoomRatio=1000;                                                                                    // 目标速度(单个电机每5ms编码器的读书),实际转速=编码器读数（5ms每次）*读取频率/倍频数/减速比/编码器精度
 /* USER CODE END PTD */
@@ -137,7 +137,6 @@ int main(void)
   // 	CCD_Init();
   // if(Mode==ELE_Line_Patrol_Mode)
   // 	ELE_Init();
-  base_velocity = Target_Velocity;
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn); // 开启引脚外部中断
   /* USER CODE END 2 */
 
@@ -150,7 +149,6 @@ int main(void)
       printf("%d:%d:%d:%d:%d:%d:%d\r\n", (int)Velocity_Kp, (int)Velocity_Ki, (int)Sensor_Kp, (int)Sensor_KI, (int)Sensor_Kd, (int)ZoomRatio, (int)Target_Velocity); // 打印到APP上面
       PID_Send = 0;
 		}
-    Turn_Pwm = Sensor_PID(); // 获取PID转向值
     // delay_flag=1;
     // delay_50=0;
     // while(delay_flag);	     			//示波器需要50ms	高精度延时，delay函数不满足要求，故使用MPU6050中断提供50ms延时
