@@ -1,4 +1,4 @@
 Load "..\\Output\\B570.axf" 
-Erase Done.Programming Failed!RDDI-DAP Error
-Error: Flash Download failed  -  "Cortex-M3"
-Flash Load finished at 18:16:31
+Erase Done.Programming Done.Verify OK.Application running ...
+RDDI-DAP Error
+Flash Load finished at 20:15:51

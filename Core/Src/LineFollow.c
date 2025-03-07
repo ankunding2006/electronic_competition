@@ -9,11 +9,25 @@
 
 // 定义全局变量
 float base_velocity = 0;              // 基准速度
-u8 sensor_history[5][FILTER_SAMPLES]; // 传感器历史数据，用于滤波
+u8 sensor_history[5][FILTER_SAMPLES > 0 ? FILTER_SAMPLES : 1]; // 传感器历史数据，用于滤波
 u8 filter_index = 0;                  // 当前滤波采样索引
 u8 one_time = 0;                      // 特殊状态标记
 u8 one_flag = 0;                      // 临时状态标记
 u8 channel_num = 0;                   // 通道计数
+u8 speed_reduced = 0;                 // 标记速度是否已被降低
+
+/*
+介绍: 更新基准速度函数
+功能: 当外部修改Target_Velocity时，同步更新基准速度
+参数: new_velocity - 新的目标速度
+返回: 无
+*/
+void Update_Base_Velocity(float new_velocity)
+{
+    base_velocity = new_velocity;
+    Target_Velocity = new_velocity;  // 确保当前速度与基准速度同步
+    speed_reduced = 0;               // 重置速度状态
+}
 
 /*
 介绍: 获取传感器数据并进行滤波处理
@@ -23,36 +37,44 @@ u8 channel_num = 0;                   // 通道计数
 */
 void Get_Sensor_Value(void)
 {
-    u8 i;
-    u8 sum_left = 0, sum_middle_left = 0, sum_middle = 0, sum_middle_right = 0, sum_right = 0;
+    #if FILTER_SAMPLES > 0
+        u8 i;
+        u8 sum_left = 0, sum_middle_left = 0, sum_middle = 0, sum_middle_right = 0, sum_right = 0;
+    
+        sensor_history[0][filter_index] = HAL_GPIO_ReadPin(SENSOR1_PORT, SENSOR1_PIN); // 左
+        sensor_history[1][filter_index] = HAL_GPIO_ReadPin(SENSOR2_PORT, SENSOR2_PIN); // 中左
+        sensor_history[2][filter_index] = HAL_GPIO_ReadPin(SENSOR3_PORT, SENSOR3_PIN); // 中
+        sensor_history[3][filter_index] = HAL_GPIO_ReadPin(SENSOR4_PORT, SENSOR4_PIN); // 中右
+        sensor_history[4][filter_index] = HAL_GPIO_ReadPin(SENSOR5_PORT, SENSOR5_PIN); // 右
 
-    // 读取当前传感器值
-    sensor_history[0][filter_index] = HAL_GPIO_ReadPin(SENSOR1_PORT, SENSOR1_PIN); // 左
-    sensor_history[1][filter_index] = HAL_GPIO_ReadPin(SENSOR2_PORT, SENSOR2_PIN); // 中左
-    sensor_history[2][filter_index] = HAL_GPIO_ReadPin(SENSOR3_PORT, SENSOR3_PIN); // 中
-    sensor_history[3][filter_index] = HAL_GPIO_ReadPin(SENSOR4_PORT, SENSOR4_PIN); // 中右
-    sensor_history[4][filter_index] = HAL_GPIO_ReadPin(SENSOR5_PORT, SENSOR5_PIN); // 右
+        // 更新滤波索引
+        filter_index = (filter_index + 1) % FILTER_SAMPLES;
 
-    // 更新滤波索引
-    filter_index = (filter_index + 1) % FILTER_SAMPLES;
+        // 计算平均值
+        for (i = 0; i < FILTER_SAMPLES; i++)
+        {
+            sum_left += sensor_history[0][i];
+            sum_middle_left += sensor_history[1][i];
+            sum_middle += sensor_history[2][i];
+            sum_middle_right += sensor_history[3][i];
+            sum_right += sensor_history[4][i];
+        }
 
-    // 计算平均值
-    for (i = 0; i < FILTER_SAMPLES; i++)
-    {
-        sum_left += sensor_history[0][i];
-        sum_middle_left += sensor_history[1][i];
-        sum_middle += sensor_history[2][i];
-        sum_middle_right += sensor_history[3][i];
-        sum_right += sensor_history[4][i];
-    }
-
-    // 基于阈值确定最终传感器状态
-    // 如果超过一半的采样是高电平，则认为检测到黑线
-    Sensor_Left = (sum_left > (FILTER_SAMPLES / 2)) ? 1 : 0;
-    Sensor_MiddleLeft = (sum_middle_left > (FILTER_SAMPLES / 2)) ? 1 : 0;
-    Sensor_Middle = (sum_middle > (FILTER_SAMPLES / 2)) ? 1 : 0;
-    Sensor_MiddleRight = (sum_middle_right > (FILTER_SAMPLES / 2)) ? 1 : 0;
-    Sensor_Right = (sum_right > (FILTER_SAMPLES / 2)) ? 1 : 0;
+        // 基于阈值确定最终传感器状态
+        // 如果超过一半的采样是高电平，则认为检测到黑线
+        Sensor_Left = (sum_left > (FILTER_SAMPLES / 2)) ? 1 : 0;
+        Sensor_MiddleLeft = (sum_middle_left > (FILTER_SAMPLES / 2)) ? 1 : 0;
+        Sensor_Middle = (sum_middle > (FILTER_SAMPLES / 2)) ? 1 : 0;
+        Sensor_MiddleRight = (sum_middle_right > (FILTER_SAMPLES / 2)) ? 1 : 0;
+        Sensor_Right = (sum_right > (FILTER_SAMPLES / 2)) ? 1 : 0;
+    #else
+        // 不进行滤波时直接读取当前值
+        Sensor_Left = HAL_GPIO_ReadPin(SENSOR1_PORT, SENSOR1_PIN);
+        Sensor_MiddleLeft = HAL_GPIO_ReadPin(SENSOR2_PORT, SENSOR2_PIN);
+        Sensor_Middle = HAL_GPIO_ReadPin(SENSOR3_PORT, SENSOR3_PIN);
+        Sensor_MiddleRight = HAL_GPIO_ReadPin(SENSOR4_PORT, SENSOR4_PIN);
+        Sensor_Right = HAL_GPIO_ReadPin(SENSOR5_PORT, SENSOR5_PIN);
+    #endif
 }
 
 /*
@@ -215,15 +237,23 @@ int Sensor_PID(void)
         sensor_bias_last = sensor_bias;
 
         // 根据偏差大小动态调整速度
-        if (fabs(sensor_bias) > 100)
+        if (fabs(sensor_bias) > BIG_ERROR_THRESHOLD)
         {
-            if (base_velocity == 0) // 首次保存基准速度
-                base_velocity = Target_Velocity;
-            Target_Velocity = base_velocity * 0.8; // 降低至80%
+            if (!speed_reduced)
+            {
+                // 只在第一次降速时保存原始速度
+                if (base_velocity == 0) // 如果基准速度未初始化
+                    base_velocity = Target_Velocity;
+                
+                Target_Velocity = base_velocity * SPEED_REDUCE_RATIO; // 降低速度
+                speed_reduced = 1; // 标记已降速
+            }
         }
-        else if (fabs(sensor_bias) < 50 && base_velocity > 0)
+        else if (fabs(sensor_bias) < SMALL_ERROR_THRESHOLD && speed_reduced && base_velocity > 0)
         {
-            Target_Velocity = base_velocity; // 恢复基准速度
+            // 当偏差恢复到较小值且有基准速度时，恢复原来的速度
+            Target_Velocity = base_velocity;
+            speed_reduced = 0; // 清除降速标记
         }
 
         return (int)PID_value;
@@ -272,6 +302,7 @@ void Init_Sensor_Pins(void)
     GPIO_InitStruct.Pin = SENSOR5_PIN;
     HAL_GPIO_Init(SENSOR5_PORT, &GPIO_InitStruct);
 
+    #if FILTER_SAMPLES > 0
     /* 初始化滤波数组 */
     for (int i = 0; i < 5; i++)
     {
@@ -280,6 +311,7 @@ void Init_Sensor_Pins(void)
             sensor_history[i][j] = 0;
         }
     }
+    #endif
 
     /* 重置滤波索引 */
     filter_index = 0;

@@ -27,7 +27,8 @@ int Sensor_PID(void);
 //初始化引脚
 void Init_Sensor_Pins(void);
 
-void Init_Sensor_Pins(void);
+//更新基准速度，在Target_Velocity被外部修改时调用
+void Update_Base_Velocity(float new_velocity);
 
 //以下五个宏定义分别对应五个红外传感器的引脚
 //依次为最左、中左、中间、中右、最右
@@ -37,7 +38,7 @@ void Init_Sensor_Pins(void);
 #define SENSOR2_PIN GPIO_PIN_13  // 中左传感器
 #define SENSOR2_PORT GPIOC
 
-#define SENSOR3_PIN GPIO_PIN_5   // 中间传感器(新增) - 请替换为实际可用的引脚
+#define SENSOR3_PIN GPIO_PIN_5   // 中间传感器
 #define SENSOR3_PORT GPIOB
 
 #define SENSOR4_PIN GPIO_PIN_14  // 中右传感器
@@ -48,7 +49,12 @@ void Init_Sensor_Pins(void);
 
 // 参数和限制定义
 #define INTEGRAL_LIMIT 3500    // 积分限幅
-#define FILTER_SAMPLES 2      // 滤波采样次数
+#define FILTER_SAMPLES 0       // 滤波采样次数，0表示不进行滤波
+
+// 速度调整参数
+#define SPEED_REDUCE_RATIO 0.8  // 遇到大偏差时的速度降低比例
+#define BIG_ERROR_THRESHOLD 100 // 大偏差阈值
+#define SMALL_ERROR_THRESHOLD 50 // 小偏差阈值
 
 // 导入外部变量
 extern volatile int Encoder_Left, Encoder_Right;

@@ -93,7 +93,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle) // 接收回调函数
 					break; // 预留
 				case 0x36:
 					Target_Velocity = Data;
-					break; // 预留
+					Update_Base_Velocity(Target_Velocity); // 更新基准速度
+					break;								   // 预留
 				case 0x37:
 					break; // 预留
 				case 0x38:
